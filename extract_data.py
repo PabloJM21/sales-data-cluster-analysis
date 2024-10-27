@@ -14,7 +14,7 @@ API_KEY = os.getenv('DATAGOV_API_KEY')
 endpoint = "http://api.census.gov/data/timeseries/eits/advm3"
 
 # Add the variables you want to retrieve in the 'get' parameter (without 'time')
-years = ['2020','2021','2022','2023','2024']
+years = ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024']
 
 # Initialize an empty list to hold all data
 all_data = []
