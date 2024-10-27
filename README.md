@@ -8,15 +8,17 @@ A more accurate description of the dataset can be found here: https://api.census
 
 The ETL pipeline is divided into two main stages:
 
-1. **Data Extraction**:  
+1. **Raw data Extraction**:  
    Raw data is extracted from the U.S. Census Bureau API, covering the last five years of Manufacturers’ Shipments, Inventories, and Orders data. This data is stored in a JSON file for the next stage.
 
-2. **Data Transformation and Organization**:  
-   The extracted data is filtered to retain only seasonally adjusted records that represent monthly percentual changes. The data is then reorganized such that the cell values are separated by time and manufacturing category. Finally, the data is saved into four separate CSV files, each corresponding to one of the following data types:  
-   - Value of Shipments (MPCVS)  
-   - New Orders (MPCNO)  
-   - Unfilled Orders (MPCUO)  
-   - Total Inventories (MPCTI)  
+2. **Extraction, transformation and loading**:  
+   The extracted data is filtered to retain only seasonally adjusted records containing the measurements (not percentual changes). The data is then reorganized such that the cell values are separated by time and data type, which are:   
+   - Value of Shipments (VS)  
+   - New Orders (NO)  
+   - Unfilled Orders (UO)  
+   - Total Inventories (TI)
+  
+   Finally, the data is saved into several csv files, each corresponding to a manufacture category. This categories are listed in 
 
    This structure allows for easy comparison of the evolution of monthly percentual changes across different manufacturing categories for each data type.
 
