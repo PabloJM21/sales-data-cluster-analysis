@@ -5,6 +5,13 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
+import argparse
+
+# Set up argument parsing for the number of clusters
+parser = argparse.ArgumentParser(description="Perform clustering on sales data.")
+parser.add_argument("--number_clusters", type=int, required=True, help="The number of clusters to form.")
+args = parser.parse_args()
+
 
 
 
@@ -12,26 +19,30 @@ import matplotlib.pyplot as plt
 data_dir = 'data/processed'
 time_series_data = {}
 time_series_data_plot = {}
-start_date = '2020-01-01'
+start_date = '2000-01-01'
+start_pandemic = '2020-01-01'
 for filename in os.listdir(data_dir):
     if filename.endswith('.csv'):
         filepath = os.path.join(data_dir, filename)
         # Load each CSV file
         df = pd.read_csv(filepath)
-        # Convert 'time' column to datetime
-        #df['time'] = pd.to_datetime(df['time'])
         # Set the 'time' column as the index for easier filtering
         df.set_index('time', inplace=True)
-        df = df.loc[start_date:].dropna()
+        df = df.loc[start_pandemic:].dropna()
         df.reset_index(inplace=True)
         print(df.head())
-        df['ED']=(df['NO']-df['UO'])/(df['TI']+df['UO'])* (df['VS'] / df['NO'])
+        #df['ED']=(df['NO']-df['UO'])/(df['TI']+df['UO'])* (df['VS'] / df['NO'])
+        df['ED'] = df['VS'] / df['NO']
         # Assuming the CSV has one column with the time series values
         branch_name = filename.split('.')[0]
         time_series_data[branch_name] = df['ED']  # Store the values as a numpy array
 
         df_plot=pd.read_csv(filepath)
-        df_plot['ED'] = (df_plot['NO'] - df_plot['UO']) / (df_plot['TI'] + df_plot['UO']) * (df_plot['VS'] / df_plot['NO'])
+        df_plot.set_index('time', inplace=True)
+        df_plot = df_plot.loc[start_date:].dropna()
+        df.reset_index(inplace=True)
+        #df_plot['ED'] = (df_plot['NO'] - df_plot['UO']) / (df_plot['TI'] + df_plot['UO']) * (df_plot['VS'] / df_plot['NO'])
+        df_plot['ED'] = df_plot['VS'] / df_plot['NO']
         branch_name = filename.split('.')[0]
         time_series_data_plot[branch_name] = df_plot['ED']
 
@@ -65,8 +76,11 @@ explained_variance = pca.explained_variance_ratio_
 print("Explained variance by each component:", explained_variance)
 cumulative_explained_variance = np.cumsum(explained_variance)
 print("Cumulative Explained Variance:", cumulative_explained_variance)
+
+# Use the parsed argument in your clustering function
+number_clusters = args.number_clusters
 #Cluster the PCA transformed data
-kmeans = KMeans(n_clusters=3)  # Choose the number of clusters based on your analysis
+kmeans = KMeans(n_clusters=number_clusters)  # Choose the number of clusters based on your analysis
 clusters = kmeans.fit_predict(pca_df)
 pca_df['Cluster'] = clusters
 
@@ -81,7 +95,7 @@ plt.xlabel('Principal Component 1')
 plt.ylabel('Principal Component 2')
 plt.title('Manufacturing Branch Clusters')
 plt.legend()
-#plt.savefig(f'effective_demand_clusters.png')
+plt.savefig(f'effective_demand_clusters.png')
 plt.show()
 
 import matplotlib.pyplot as plt
@@ -103,7 +117,7 @@ def plot_clusters(clusters, time_series_data, start_date, frequency='MS'):
         # Plot each branch's ED time series within this cluster
         for branch in branches:
             # Check if the branch exists in the time series data
-            if branch in time_series_data:
+            if branch in time_series_data_plot:
                 plt.plot(time_index, time_series_data_plot[branch], label=branch)
 
         # Adding title, legend, and labels
@@ -113,7 +127,7 @@ def plot_clusters(clusters, time_series_data, start_date, frequency='MS'):
         plt.legend(loc='best')  # Place the legend in the best location
         plt.grid(True)  # Add grid lines to the plot
         plt.tight_layout()  # Automatically adjust subplot parameters to give specified padding
-        #plt.savefig(f'effective_demand_cluster{cluster_id}.png')
+        plt.savefig(f'effective_demand_cluster{cluster_id}.png')
         plt.show()  # Show the plot for the current cluster
 
 
