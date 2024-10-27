@@ -18,7 +18,7 @@ The ETL pipeline is divided into two main stages:
    - Unfilled Orders (UO)  
    - Total Inventories (TI)
   
-   Finally, the data is saved into several csv files, each corresponding to a manufacture category. This categories are listed in 
+   Finally, the data is saved into several csv files, each corresponding to a manufacture category. This categories can be found here: https://www.census.gov/econ/currentdata/dbsearch?programCode=M3ADV&startYear=1992&endYear=2024&categories[]=MDM&dataType=NO&geoLevel=US&adjusted=1&notAdjusted=1&errorData=0
 
    This structure allows for easy comparison of the evolution of monthly percentual changes across different manufacturing categories for each data type.
 
