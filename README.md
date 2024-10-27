@@ -79,12 +79,21 @@ sales-data-etl/
     DATAGOV_API_KEY=your_api_key_here
     ```
 
-4. Run the ETL pipeline:
-    1. **Retrieve data** from the API:
-       ```bash
-       python extract_data.py
-       ```
-    2. **Extract, Transform and Load** the raw data:
-       ```bash
-       run_etl.py
-       ```
+## Extract and load the data
+
+1. **Retrieve data** from the API:
+    ```bash
+    python extract_data.py
+    ```
+
+2. **Extract, Transform and Load** the raw data:
+    ```bash
+    python run_etl.py
+    ```
+
+## Clustering Analysis
+
+To perform the clustering on sales data, erun the following command:
+
+```bash
+python Clustering.py --number_clusters <NUMBER_OF_CLUSTERS>
