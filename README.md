@@ -86,7 +86,7 @@ sales-data-etl/
     python extract_data.py
     ```
 
-2. **Extract, Transform and Load** the raw data:
+2. **Extract, Transform and Load** the data for further analysis:
     ```bash
     python run_etl.py
     ```
