@@ -119,4 +119,6 @@ Clusters without transformation
 Clusters with transformation
 ![Clusters with transformation](/images/ED_clusters_orthogonal.png)
 
+Time series data from cluster 0 for orthogonal transformation
+![Clusters with transformation](/images/ED_cluster0_orthogonal.png)
 
