@@ -92,8 +92,19 @@ sales-data-etl/
     ```
 
 ## Clustering Analysis
+The cluster analysis consists of two main stages. Before these stages, an optional orthogonal transformation can be applied to the data, ensuring that shifted graphs with similar patterns become indistinguishable. This preliminary transformation allows the clustering algorithm to focus on capturing similar trends in the time series data, regardless of differences in their values.
+This transformation can be applied enabling the ´--orthogonal_transform´ parameter.
 
-To perform the clustering on sales data, erun the following command:
+
+1. **Principal component analysis (PCA)**:  
+   For dimensionality reduction. Two dimensions were chosen for the subspace.
+2. **K-means Clustering**:  
+   Selected for the cluster analysis. The number of clusters can be set through the ´--number_clusters´ parameter.
+
+
+To perform the clustering analysis on the data, run the following command:
 
 ```bash
-python Clustering.py --number_clusters <NUMBER_OF_CLUSTERS>
+python Clustering.py --number_clusters <NUMBER_OF_CLUSTERS> --orthogonal_transform
+
+This will generate one image displaying each category in the PCA subspace, and one image for each cluster displaying the time series data of the effective demand of the categories involved. 
