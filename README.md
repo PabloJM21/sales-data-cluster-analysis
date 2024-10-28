@@ -91,20 +91,32 @@ sales-data-etl/
     python run_etl.py
     ```
 
-## Clustering Analysis
+## Clustering Analysis Setup
 The cluster analysis consists of two main stages. Before these stages, an optional orthogonal transformation can be applied to the data, ensuring that shifted graphs with similar patterns become indistinguishable. This preliminary transformation allows the clustering algorithm to focus on capturing similar trends in the time series data, regardless of differences in their values.
-This transformation can be applied enabling the ´--orthogonal_transform´ parameter.
+This transformation can be applied enabling the `--orthogonal_transform` parameter.
 
 
 1. **Principal component analysis (PCA)**:  
    For dimensionality reduction. Two dimensions were chosen for the subspace.
 2. **K-means Clustering**:  
-   Selected for the cluster analysis. The number of clusters can be set through the ´--number_clusters´ parameter.
+   Selected for the cluster analysis. The number of clusters can be set through the `--number_clusters` parameter.
 
 
 To perform the clustering analysis on the data, run the following command:
 
 ```bash
 python Clustering.py --number_clusters <NUMBER_OF_CLUSTERS> --orthogonal_transform
+```
+This will generate one image displaying each category in the PCA subspace, and one image for each cluster displaying the time series data of the effective demand of the categories involved.
 
-This will generate one image displaying each category in the PCA subspace, and one image for each cluster displaying the time series data of the effective demand of the categories involved. 
+## Clustering Analysis Results
+I performed the analysis with 5 clusters for the two settings with and without orthogonal transformation. I found that the transformation effectively assigns one category to a cluster with more categories, while it would have been assigned to its own cluster otherwise.
+This allows for a more efficient way of using the clusters. So instead of piling many categories in the same cluster, these are split into two clusters.
+Clusters without transformation
+[Clusters without transformation](../images/ED_clusters.png)
+
+
+Clusters with transformation
+[Clusters with transformation](../images/ED_clusters_orthogonal.png)
+
+
