@@ -12,7 +12,7 @@ The ETL pipeline is divided into two main stages:
    Raw data is extracted from the U.S. Census Bureau API, covering the last five years of Manufacturers’ Shipments, Inventories, and Orders data. This data is stored in a JSON file for the next stage.
 
 2. **Extraction, transformation and loading**:  
-   The extracted data is filtered to retain only seasonally adjusted records containing the measurements (not percentual changes). The data is then reorganized such that the cell values are separated by time and data type, which are:   
+   The extracted data is filtered to retain only seasonally adjusted records containing the measurements (not percentual changes). The data is then reorganized such that the cell values are separated by time and data type. These data types are:   
    - Value of Shipments (VS)  
    - New Orders (NO)  
    - Unfilled Orders (UO)  
@@ -44,10 +44,6 @@ sales-data-etl/
 ├── data/
 │   ├── raw_data.json                  # Raw data extracted from the API
 │   └── processed/                     # Processed CSV files
-│       ├── MPCVS_data.csv             # CSV file for Value of Shipments
-│       ├── MPCNO_data.csv             # CSV file for New Orders
-│       ├── MPCUO_data.csv             # CSV file for Unfilled Orders
-│       └── MPCTI_data.csv             # CSV file for Total Inventories
 │
 ├── extract_data.py                    # Script to extract the raw data from the API corresponding to the last 5 years
 ├── run_etl.py                         # Script for the etl pipeline. Filters, transforms and loads data into four csv files.
@@ -58,7 +54,6 @@ sales-data-etl/
 
 ### Prerequisites
 - Python 3.8 or above
-- MySQL 
 - API Key from Data.gov (sign up [here](https://api.data.gov/signup/))
 
 ### Installation
