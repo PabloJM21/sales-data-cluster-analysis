@@ -7,12 +7,22 @@ from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 import argparse
 
-# Set up argument parsing for the number of clusters
-parser = argparse.ArgumentParser(description="Perform clustering on sales data.")
+# Set up an ArgumentParser instance
+parser = argparse.ArgumentParser(description="Perform clustering and PCA on sales data with optional orthogonal transformation.")
+
+# Add argument for the number of clusters
 parser.add_argument("--number_clusters", type=int, required=True, help="The number of clusters to form.")
+
+# Add argument for the optional orthogonal transformation
+parser.add_argument('--orthogonal_transform', action='store_true',
+                    help="Apply orthogonal transformation to remove identity direction component.")
+
+# Parse arguments
 args = parser.parse_args()
 
-
+# Now both args.number_clusters and args.orthogonal_transform are available for use
+print(f"Number of clusters: {args.number_clusters}")
+print(f"Orthogonal transform enabled: {args.orthogonal_transform}")
 
 
 
@@ -63,6 +73,16 @@ scaler = StandardScaler()
 standardized_data = scaler.fit_transform(df_time_series)
 
 
+# Step 1: Create the identity vector and normalize it
+n_features = standardized_data.shape[1]
+identity_vector = np.ones(n_features)
+identity_vector_normalized = identity_vector / np.linalg.norm(identity_vector)
+
+if args.orthogonal_transform:
+    standardized_data = standardized_data - (standardized_data @ identity_vector_normalized)[:, np.newaxis] * identity_vector_normalized
+    print("Orthogonal transformation applied.")
+
+
 #Apply PCA
 pca = PCA(n_components=2)  # Start with 2 components for visualization
 principal_components = pca.fit_transform(standardized_data)
@@ -95,7 +115,11 @@ plt.xlabel('Principal Component 1')
 plt.ylabel('Principal Component 2')
 plt.title('Manufacturing Branch Clusters')
 plt.legend()
-plt.savefig(f'effective_demand_clusters.png')
+if args.orthogonal_transform:
+    plt.savefig(f'ED_clusters_orthogonal.png')
+else:
+    plt.savefig(f'ED_clusters.png')
+
 plt.show()
 
 import matplotlib.pyplot as plt
@@ -127,7 +151,10 @@ def plot_clusters(clusters, time_series_data, start_date, frequency='MS'):
         plt.legend(loc='best')  # Place the legend in the best location
         plt.grid(True)  # Add grid lines to the plot
         plt.tight_layout()  # Automatically adjust subplot parameters to give specified padding
-        plt.savefig(f'effective_demand_cluster{cluster_id}.png')
+        if args.orthogonal_transform:
+            plt.savefig(f'ED_cluster{cluster_id}_orthogonal.png')
+        else:
+            plt.savefig(f'ED_cluster{cluster_id}.png')
         plt.show()  # Show the plot for the current cluster
 
 
