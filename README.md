@@ -117,6 +117,6 @@ Clusters without transformation
 
 
 Clusters with transformation
-![Clusters with transformation](/images/ED_clusters_orthogonal.png)
+[Clusters with transformation](/images/ED_clusters_orthogonal.png)
 
 
