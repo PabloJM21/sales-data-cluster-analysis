@@ -92,7 +92,9 @@ sales-data-etl/
     ```
 
 ## Clustering Analysis Setup
-The cluster analysis consists of two main stages. Before these stages, an optional orthogonal transformation can be applied to the data, ensuring that shifted graphs with similar patterns become indistinguishable. This preliminary transformation allows the clustering algorithm to focus on capturing similar trends in the time series data, regardless of differences in their values.
+The goal of the cluster analysis is to cluster the univariate time series of the effective demand across all categories. For feasability, we will take into account the data recorded since 2020.
+
+The analysis consists of two main stages. Before these stages, an optional orthogonal transformation can be applied to the data, ensuring that shifted graphs with similar patterns become indistinguishable. This preliminary transformation allows the clustering algorithm to focus on capturing similar trends in the time series data, regardless of differences in their values.
 This transformation can be applied enabling the `--orthogonal_transform` parameter.
 
 
