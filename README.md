@@ -44,10 +44,12 @@ sales-data-etl/
 ├── data/
 │   ├── raw_data.json                  # Raw data extracted from the API
 │   └── processed/                     # Processed CSV files
-│
-├── extract_data.py                    # Script to extract the raw data from the API corresponding to the last 5 years
-├── run_etl.py                         # Script for the etl pipeline. Filters, transforms and loads data into four csv files.
-
+├──images/                             # All generated images
+│ 
+├── extract_data.py                    # Script to extract the raw data from the API from the year 2000 until now
+├── run_etl.py                         # Script for the etl pipeline. Filters, transforms and loads data into four csv files
+├── etl_functions.py                   # Contains the functions for the etl pipeline
+├── Clustering.py                      # Performs the cluster analysis
 ```
 
 ## Setup Instructions
