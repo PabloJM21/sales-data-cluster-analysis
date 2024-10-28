@@ -111,7 +111,7 @@ This will generate one image displaying each category in the PCA subspace, and o
 
 ## Clustering Analysis Results
 I performed the analysis with 5 clusters for the two settings with and without orthogonal transformation. I found that the transformation effectively assigns one category to a cluster with more categories, while it would have been assigned to its own cluster otherwise.
-This allows for a more efficient way of using the clusters. So instead of piling many categories in the same cluster, these are split into two clusters.
+This allows for a more efficient way of using the clusters. So instead of piling many categories in the same cluster, these are divided among two clusters.
 
 Clusters without transformation
 ![Clusters without transformation](/images/ED_clusters.png)
