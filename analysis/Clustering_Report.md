@@ -1,3 +1,10 @@
+# Clustering Analysis Report
+
+## Overview
+This report summarizes the findings from the clustering analysis.
+
+## Key Findings
+
 ### Visualizations
 
 #### Effective Demand Patterns Across Clusters
