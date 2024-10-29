@@ -129,11 +129,16 @@ Clusters without transformation
 Clusters with transformation
 ![Clusters with transformation](/images/ED_clusters_orthogonal.png)
 As we see, instead of including many categories in the same cluster (cluster 0), these are divided among two clusters (clusters 0 and 4).
-This happens because the transformation assigns a category to cluster 0 that would have been assigned to its own cluster (cluster 4) otherwise, so there .
-As we will see now this category, which is category 34S, exhibits a similar trend to the others, but is shifted up. 
+These clusters capture series with significantly different features:
 
 Time series data from cluster 0 for orthogonal transformation
 ![Clusters with transformation](/images/ED_cluster0_orthogonal.png)
+
+Time series data from cluster 4 for orthogonal transformation
+![Clusters with transformation](/images/ED_cluster4_orthogonal.png)
+
+This happens because the transformation assigns category 34S to cluster 0, which exhibits a similar trend to the others but is shifted up. On the other hand, without the transformation it would have been assigned to its own cluster (cluster 4). So one cluster is lost and all other series from the last plots are assigned to the same cluster. 
+
 
 
 
