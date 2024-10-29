@@ -95,6 +95,9 @@ The goal of the analysis is to cluster the univariate time series of the effecti
 
 $ \text{ED} = \frac{\text{VS}}{\text{NO}} $
 
+$$
+\text{Effective Demand} = \frac{\text{Value of Shipments}}{\text{New Orders}}
+$$
 
 
 For feasability, we will take into account the data recorded since 2020.
