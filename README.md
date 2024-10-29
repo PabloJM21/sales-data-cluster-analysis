@@ -127,25 +127,27 @@ In order to compare the effect of the orthogonal transformation, I performed the
 
 We will discuss the results attending to the generated images.
 
-Clusters without transformation
+**Clusters without transformation**
 ![Clusters without transformation](/images/ED_clusters.png)
 
-Clusters with transformation
+**Clusters with transformation**
 ![Clusters with transformation](/images/ED_clusters_standardize.png)
 As we see, the standardization has a significant impact on the components, which affects the clustering algorithm.
 
 However both clustering results differ only in two categories, which are 34X and DEF. 
 
-Time series data from cluster 0 without standardization
+**Time series data from cluster 0 without standardization**
 ![Clusters with transformation](/images/ED_cluster0.png)
 
-Cluster 0 from the analysis without standardization includes these two categories. The cluster from the standardized version contains the same categories excluding only these two, which are included in the following two clusters:
+Cluster 0 from the analysis without standardization includes these two categories. 
 
-Time series data from cluster 2 with standardization
+The cluster from the standardized version contains the same categories excluding only these two, which are included in the following two clusters:
+
+**Time series data from cluster 2 with standardization**
 ![Clusters with transformation](/images/ED_cluster2_standardize.png)
 34 X exhibits a similar trend to 34S from 2022 to 2024, but is shifted down.
 
-Time series data from cluster 2 with standardization
+**Time series data from cluster 2 with standardization**
 ![Clusters with transformation](/images/ED_cluster3_standardize.png)
 
 Category DEF also exhibits a similar trend to category DAP, but its amplitude is lower. 
