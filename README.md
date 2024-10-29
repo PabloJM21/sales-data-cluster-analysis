@@ -145,5 +145,5 @@ This happens because the transformation assigns category 34S to cluster 0, which
 
 
 
-
 In conclusion, the transformation effectively captures similar trends without comparing the values. This allows for a more meaningful cluster criteria and a more efficient way of using the clusters.
+
