@@ -131,19 +131,26 @@ Clusters without transformation
 ![Clusters without transformation](/images/ED_clusters.png)
 
 Clusters with transformation
-![Clusters with transformation](/images/ED_clusters_orthogonal.png)
-As we see, instead of including many categories in the same cluster (cluster 0), these are divided among two clusters (clusters 0 and 4).
-These clusters capture series with significantly different features:
+![Clusters with transformation](/images/ED_clusters_standardize.png)
+As we see, the standardization has a significant impact on the components, which affects the clustering algorithm.
 
-Time series data from cluster 0 for orthogonal transformation
-![Clusters with transformation](/images/ED_cluster0_orthogonal.png)
+However both clustering results differ only in two categories, which are 34X and DEF. 
 
-Time series data from cluster 4 for orthogonal transformation
-![Clusters with transformation](/images/ED_cluster4_orthogonal.png)
+Time series data from cluster 0 without standardization
+![Clusters with transformation](/images/ED_cluster0.png)
 
-This happens because the transformation assigns category 34S to cluster 0, which exhibits a similar trend to the others but is shifted up. On the other hand, without the transformation it would have been assigned to its own cluster (cluster 4). So one cluster is lost and all other series from the last plots are assigned to the same cluster. 
+Cluster 0 from the analysis without standardization includes these two categories. The cluster from the standardized version contains the same categories excluding only these two, which are included in the following two clusters:
 
+Time series data from cluster 2 with standardization
+![Clusters with transformation](/images/ED_cluster2_standardize.png)
+34 X exhibits a similar trend to 34S from 2022 to 2024, but is shifted down.
 
+Time series data from cluster 2 with standardization
+![Clusters with transformation](/images/ED_cluster3_standardize.png)
 
-In conclusion, the transformation effectively captures similar trends without comparing the values. This allows for a more meaningful cluster criteria and a more efficient way of using the clusters.
+Category DEF also exhibits a similar trend to category DAP, but its amplitude is lower. 
+
+In the non standardized version these clusters only contain one time series.
+
+In conclusion, the transformation effectively captures similar trends resulting in a more meaningful cluster criteria and a more efficient way of using the clusters.
 
