@@ -1,8 +1,8 @@
-# ETL Pipeline for Manufacturers’ Shipments, Inventories, and Orders
+# Time series clustering for Manufacturers’ Shipments, Inventories, and Orders
 
-This project is an ETL pipeline that extracts data from a public API and transforms it for better analysis.
+This project consists of a clustering analysis on time series data corresponding to different manufacture categories. The goal is to compare different methods and find the most effective clustering technique, that attends to relevant features and performs meaningful data agrupations.
 
-The data extracted from the API corresponds to Manufacturers’ Shipments, Inventories, and Orders from the U.S. Census Bureau. 
+The data is extracted from a public API and corresponds to Manufacturers’ Shipments, Inventories, and Orders from the U.S. Census Bureau. 
 
 A more accurate description of the dataset can be found here: https://api.census.gov/data/timeseries/eits/advm3.html.
 
