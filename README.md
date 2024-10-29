@@ -6,21 +6,7 @@ The data extracted from the API corresponds to Manufacturers’ Shipments, Inven
 
 A more accurate description of the dataset can be found here: https://api.census.gov/data/timeseries/eits/advm3.html.
 
-The ETL pipeline is divided into two main stages:
 
-1. **Raw data Extraction**:  
-   Raw data is extracted from the U.S. Census Bureau API, covering the last five years of Manufacturers’ Shipments, Inventories, and Orders data. This data is stored in a JSON file for the next stage.
-
-2. **Extraction, transformation and loading**:  
-   The extracted data is filtered to retain only seasonally adjusted records containing the measurements (not percentual changes). The data is then reorganized such that the cell values are separated by time and data type. These data types are:   
-   - Value of Shipments (VS)  
-   - New Orders (NO)  
-   - Unfilled Orders (UO)  
-   - Total Inventories (TI)
-  
-   Finally, the data is saved into several csv files, each corresponding to a manufacture category. This categories can be found here: https://www.census.gov/econ/currentdata/dbsearch?programCode=M3ADV&startYear=1992&endYear=2024&categories[]=MDM&dataType=NO&geoLevel=US&adjusted=1&notAdjusted=1&errorData=0
-
-   This structure allows for easy comparison of the evolution of monthly percentual changes across different manufacturing categories for each data type.
 
 ## Data variables
 
@@ -78,6 +64,22 @@ sales-data-etl/
 
 ## Retrieve data and perform ETL
 
+The ETL pipeline is divided into two main stages:
+
+1. **Raw data Extraction**:  
+   Raw data is extracted from the U.S. Census Bureau API, covering the last five years of Manufacturers’ Shipments, Inventories, and Orders data. This data is stored in a JSON file for the next stage.
+
+2. **Extraction, transformation and loading**:  
+   The extracted data is filtered to retain only seasonally adjusted records containing the measurements (not percentual changes). The data is then reorganized such that the cell values are separated by time and data type. These data types are:   
+   - Value of Shipments (VS)  
+   - New Orders (NO)  
+   - Unfilled Orders (UO)  
+   - Total Inventories (TI)
+  
+   Finally, the data is saved into several csv files, each corresponding to a manufacture category. This categories can be found here: https://www.census.gov/econ/currentdata/dbsearch?programCode=M3ADV&startYear=1992&endYear=2024&categories[]=MDM&dataType=NO&geoLevel=US&adjusted=1&notAdjusted=1&errorData=0
+
+   This structure allows for easy comparison of the evolution of the cell values of different data types for each manufacturing category.
+
 1. **Retrieve data** from the API:
     ```bash
     python extract_data.py
@@ -89,7 +91,13 @@ sales-data-etl/
     ```
 
 ## Clustering Analysis Setup
-The goal of the analysis is to cluster the univariate time series of the effective demand across all categories. For feasability, we will take into account the data recorded since 2020.
+The goal of the analysis is to cluster the univariate time series of the effective demand across all categories. The effective demand (ED) is calculated using the following formula:
+
+$ \text{ED} = \frac{\text{VS}}{\text{NO}} $
+
+
+
+For feasability, we will take into account the data recorded since 2020.
 
 The analysis consists of two main stages. Before these stages, an optional orthogonal transformation can be applied to the data, ensuring that shifted graphs with similar patterns become indistinguishable. This preliminary transformation allows the clustering algorithm to focus on capturing similar trends in the time series data, regardless of differences in their values.
 This transformation can be applied enabling the `--orthogonal_transform` parameter.
