@@ -103,12 +103,12 @@ $$
 
 For feasability, we will take into account the data recorded since 2020.
 
-The analysis consists of two main stages. Before these stages, an optional orthogonal transformation can be applied to the data, ensuring that shifted graphs with similar patterns become indistinguishable. This preliminary transformation allows the clustering algorithm to focus on capturing similar trends in the time series data, regardless of differences in their values.
-This transformation can be applied enabling the `--orthogonal_transform` parameter.
+The analysis consists of two main stages. Before these stages, a preliminary standardization can be applied to the time series data, which is done individually for each category. This preliminary transformation allows the clustering algorithm to focus on capturing similar trends in the data, regardless of differences in their values and amplitude.
+This transformation can be applied enabling the `--standardize` parameter.
 
 
 1. **Principal component analysis (PCA)**:  
-   For dimensionality reduction. Two dimensions were chosen for the subspace.
+   For dimensionality reduction. The number of components can be set through the `--number_components` parameter.
 2. **K-means Clustering**:  
    Selected for the cluster analysis. The number of clusters can be set through the `--number_clusters` parameter.
 
@@ -116,12 +116,16 @@ This transformation can be applied enabling the `--orthogonal_transform` paramet
 To perform the clustering analysis on the data, run the following command:
 
 ```bash
-python Clustering.py --number_clusters <NUMBER_OF_CLUSTERS> --orthogonal_transform
+python Clustering.py --number_clusters <NUMBER_OF_CLUSTERS> --number_components <NUMBER_OF_COMPONENTS> --standardize
 ```
-This will generate one image displaying each category in the PCA subspace, and one image for each cluster displaying the time series data of the effective demand of the categories involved.
+This will generate one image displaying each category in the first two components of the PCA subspace, and one image for each cluster displaying the time series data of the effective demand of the categories involved.
+In addition, the confirmation of the parameters chosen is printed to the terminal, along with the explained and cumulative explained variance of the principal components.
 
 ## Clustering Analysis Results
-In order to compare the effect of the orthogonal transformation, I performed the analysis with 5 clusters for the two settings (with and without the transformation). We will discuss the results attending to the generated images.
+In order to compare the effect of the orthogonal transformation, I performed the analysis with 5 clusters and 3 principal components for the two different settings (with and without the transformation). The terminal output was as follows:
+
+
+We will discuss the results attending to the generated images.
 
 Clusters without transformation
 ![Clusters without transformation](/images/ED_clusters.png)
