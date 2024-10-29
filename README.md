@@ -67,7 +67,7 @@ sales-data-etl/
 The ETL pipeline is divided into two main stages:
 
 1. **Raw data Extraction**:  
-   Raw data is extracted from the U.S. Census Bureau API, covering the last five years of Manufacturers’ Shipments, Inventories, and Orders data. This data is stored in a JSON file for the next stage.
+   Raw data is extracted from the U.S. Census Bureau API, covering the 21st century of Manufacturers’ Shipments, Inventories, and Orders data. This data is stored in a JSON file for the next stage.
 
 2. **Extraction, transformation and loading**:  
    The extracted data is filtered to retain only seasonally adjusted records containing the measurements (not percentual changes). The data is then reorganized such that the cell values are separated by time and data type. These data types are:   
