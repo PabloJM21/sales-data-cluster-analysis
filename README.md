@@ -150,7 +150,7 @@ Time series data from cluster 2 with standardization
 
 Category DEF also exhibits a similar trend to category DAP, but its amplitude is lower. 
 
-In the non standardized version these clusters only contain one time series.
+In the non standardized version these clusters only contain categories 34S and DAP respectively.
 
 In conclusion, the transformation effectively captures similar trends resulting in a more meaningful cluster criteria and a more efficient way of using the clusters.
 
