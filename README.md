@@ -22,7 +22,7 @@ The ETL pipeline is divided into two main stages:
 
    This structure allows for easy comparison of the evolution of monthly percentual changes across different manufacturing categories for each data type.
 
-# Data variables
+## Data variables
 
 The data extracted contains the following variables:
 
@@ -76,7 +76,7 @@ sales-data-etl/
     DATAGOV_API_KEY=your_api_key_here
     ```
 
-## Extract and load the data
+## Retrieve data and perform ETL
 
 1. **Retrieve data** from the API:
     ```bash
@@ -89,7 +89,7 @@ sales-data-etl/
     ```
 
 ## Clustering Analysis Setup
-The goal of the cluster analysis is to cluster the univariate time series of the effective demand across all categories. For feasability, we will take into account the data recorded since 2020.
+The goal of the analysis is to cluster the univariate time series of the effective demand across all categories. For feasability, we will take into account the data recorded since 2020.
 
 The analysis consists of two main stages. Before these stages, an optional orthogonal transformation can be applied to the data, ensuring that shifted graphs with similar patterns become indistinguishable. This preliminary transformation allows the clustering algorithm to focus on capturing similar trends in the time series data, regardless of differences in their values.
 This transformation can be applied enabling the `--orthogonal_transform` parameter.
@@ -109,15 +109,20 @@ python Clustering.py --number_clusters <NUMBER_OF_CLUSTERS> --orthogonal_transfo
 This will generate one image displaying each category in the PCA subspace, and one image for each cluster displaying the time series data of the effective demand of the categories involved.
 
 ## Clustering Analysis Results
-I performed the analysis with 5 clusters for the two settings with and without orthogonal transformation. I found that the transformation effectively assigns one category to a cluster with more categories, while it would have been assigned to its own cluster otherwise.
-This allows for a more efficient way of using the clusters. So instead of piling many categories in the same cluster, these are divided among two clusters.
+I performed the analysis with 5 clusters for the two settings with and without orthogonal transformation. I found that 
+This 
 
 Clusters without transformation
 ![Clusters without transformation](/images/ED_clusters.png)
 
 Clusters with transformation
 ![Clusters with transformation](/images/ED_clusters_orthogonal.png)
+As we see, instead of including many categories in the same cluster (cluster 0), these are divided among two clusters (clusters 0 and 4).
+This happens because the transformation assigns a category to cluster 0 that would have been assigned to its own cluster (cluster 4) otherwise.
+As we will see now this category, which is category 34S, exhibits a similar trend to the others, but is shifted up. 
 
 Time series data from cluster 0 for orthogonal transformation
 ![Clusters with transformation](/images/ED_cluster0_orthogonal.png)
+In conclusion, the transformation effectively captures similar trends without comparing the values. This allows for a more meaningful cluster criteria and a more efficient way of using the clusters.
+
 
