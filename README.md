@@ -1,6 +1,6 @@
 # Time series clustering for Manufacturers’ Shipments, Inventories, and Orders
 
-This project consists of a clustering analysis on time series data corresponding to different manufacture categories. The goal is to compare different methods and find the most effective clustering technique, that attends to relevant features and performs meaningful data agrupations.
+This project consists of a clustering analysis on time series data corresponding to different manufacture categories. It combines extraction, cleaning and loading of data (a ETL pipeline) with exploratory data analysis in order to group the data and gain meaningful insights.  
 
 The data is extracted from a public API and corresponds to Manufacturers’ Shipments, Inventories, and Orders from the U.S. Census Bureau. 
 
